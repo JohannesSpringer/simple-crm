@@ -11,7 +11,7 @@
 }
 
 .logo-container {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-left: 16px;
   padding-right: 16px;
   min-height: 56px;
@@ -29,20 +29,28 @@ mat-toolbar, mat-toolbar-row {
   padding: 0;
   margin: 0;
 
-  li {
+  a {
     padding-left: 16px;
     padding-right: 16px;
     height: 48px;
     display: flex;
     align-items: center;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
 
     mat-icon {
       margin-right: 16px;
+      color: black;
     }
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.1);
     }
   }
+}
+
+.router-container {
+  padding-left: 56px;
+  padding-top: 16px;
 }
