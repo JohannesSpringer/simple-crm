@@ -7,6 +7,8 @@ import { User } from '../../models/user.class';
 import { FormsModule } from '@angular/forms';
 import { Firestore, collectionData, collection, addDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -16,7 +18,9 @@ import { Observable } from 'rxjs';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FormsModule
+    FormsModule,
+    MatProgressBarModule,
+    CommonModule
   ],
   providers: [
     { provide: DateAdapter, useClass: NativeDateAdapter },
@@ -29,18 +33,21 @@ export class DialogAddUserComponent {
 
   user: User = new User();
   birthDate: Date;
+  loading: boolean = false;
   firestore: Firestore = inject(Firestore);
   users$: Observable<any[]>;
   usersCollection = collection(this.firestore, 'users')
 
-  constructor() {  }
+  constructor() { }
 
   saveUser() {
+    this.loading = true;
     this.user.birthDate = this.birthDate.getTime();
     console.log('Current User is: ', this.user)
-    
+
     addDoc(this.usersCollection, this.user.toJSON()).then((result: any) => {
-      console.log('User added. ', result);
+      console.log('User successfully added. ', result);
+      this.loading = false;
     });
   }
 
