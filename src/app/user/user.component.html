@@ -1,4 +1,24 @@
-<p>user works!</p>
-<button (click)="openDialog()" class="add-user-button" mat-fab color="primary" matTooltip="Add user" matTooltipPosition="above" matTooltipShowDelay="200">
+<mat-card ngSkipHydration>
+  <table class="user-table">
+    <tr>
+      <th>Name</th>
+      <th>E-Mail</th>
+      <th>City</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+  </table>
+</mat-card>
+
+<button (click)="openDialog()" class="add-user-button" mat-fab color="primary" matTooltip="Add user"
+  matTooltipPosition="above" matTooltipShowDelay="200">
   <mat-icon>add</mat-icon>
 </button>
