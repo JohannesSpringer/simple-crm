@@ -5,7 +5,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_NATIVE_DATE_FORMATS, MatNativeDateModule, NativeDateAdapter } from '@angular/material/core';
 import { User } from '../../models/user.class';
 import { FormsModule } from '@angular/forms';
-import { Firestore, collectionData, collection, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
@@ -37,7 +37,7 @@ export class DialogAddUserComponent {
   birthDate: Date;
   loading: boolean = false;
   firestore: Firestore = inject(Firestore);
-  users$: Observable<any[]>;
+  // users$: Observable<any[]>;
   usersCollection = collection(this.firestore, 'users')
 
   constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) { }

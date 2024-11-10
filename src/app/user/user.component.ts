@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -6,6 +6,9 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { User } from '../../models/user.class';
 import { MatCardModule } from '@angular/material/card';
+import { Firestore, collectionData, collection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-user',
@@ -17,8 +20,19 @@ import { MatCardModule } from '@angular/material/card';
 export class UserComponent {
 
   user: User = new User();
+  firestore: Firestore = inject(Firestore);
+  users$: Observable<any[]>;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {
+    const userCollection = collection(this.firestore, 'users');
+    this.users$ = collectionData(userCollection);
+  }
+
+  ngOnInit(): void {
+    this.users$.subscribe(users => {
+      console.log("Neue User Daten. ", users);
+    })
+  }
 
   openDialog() {
     this.dialog.open(DialogAddUserComponent, {
