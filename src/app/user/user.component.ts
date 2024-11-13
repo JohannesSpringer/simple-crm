@@ -8,20 +8,22 @@ import { User } from '../../models/user.class';
 import { MatCardModule } from '@angular/material/card';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, MatTooltipModule, MatDialogModule, MatCardModule],
+  imports: [MatButtonModule, MatIconModule, MatTooltipModule, MatDialogModule, MatCardModule, CommonModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
 })
+
 export class UserComponent {
 
   user: User = new User();
   firestore: Firestore = inject(Firestore);
   users$: Observable<any[]>;
+  allUsers = [];
 
   constructor(public dialog: MatDialog) {
     const userCollection = collection(this.firestore, 'users');
@@ -31,6 +33,7 @@ export class UserComponent {
   ngOnInit(): void {
     this.users$.subscribe(users => {
       console.log("Neue User Daten. ", users);
+      this.allUsers = users;
     })
   }
 

@@ -5,7 +5,7 @@
 <div mat-dialog-content class="pl-16 pr-16">
 
   <div>
-    <mat-form-field class="mr-16" appearance="outline">
+    <mat-form-field class="mr-16 pt-8" appearance="outline">
       <mat-label>First Name</mat-label>
       <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="Your first name">
       <!-- <mat-hint>Please enter your first name</mat-hint> -->
@@ -14,6 +14,14 @@
       <mat-label>Last Name</mat-label>
       <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="Your last name">
       <!-- <mat-hint>Please enter your last name</mat-hint> -->
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>E-Mail</mat-label>
+      <input [disabled]="loading" [(ngModel)]="user.mail" matInput placeholder="Your E-Mail">
+      <!-- <mat-hint>Please enter your e-mail</mat-hint> -->
     </mat-form-field>
   </div>
 
