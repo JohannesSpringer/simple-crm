@@ -9,11 +9,12 @@ import { MatCardModule } from '@angular/material/card';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, MatTooltipModule, MatDialogModule, MatCardModule, CommonModule],
+  imports: [MatButtonModule, MatIconModule, MatTooltipModule, MatDialogModule, MatCardModule, CommonModule, RouterModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
 })
@@ -27,7 +28,7 @@ export class UserComponent {
 
   constructor(public dialog: MatDialog) {
     const userCollection = collection(this.firestore, 'users');
-    this.users$ = collectionData(userCollection);
+    this.users$ = collectionData(userCollection, { idField: 'userId' });
   }
 
   ngOnInit(): void {

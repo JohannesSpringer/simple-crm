@@ -36,7 +36,6 @@ export class DialogAddUserComponent {
   birthDate: Date;
   loading: boolean = false;
   firestore: Firestore = inject(Firestore);
-  // users$: Observable<any[]>;
   usersCollection = collection(this.firestore, 'users')
 
   constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) { }
