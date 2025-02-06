@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-
+import { ActivatedRoute } from '@angular/router';
+import { Firestore, collection, collectionData, getDoc, doc, docData } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-detail',
@@ -11,4 +13,29 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class UserDetailComponent {
 
+  firestore: Firestore = inject(Firestore);
+  userId = '';
+  user$!: Observable<any>;
+  user: any = {};
+  
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe( paramMap => {
+      this.userId = paramMap.get('id');
+      console.log('GOT ID:', this.userId);
+      this.getUser();
+    })
+  }
+
+  getUser() {
+    const usersRef = collection(this.firestore, 'users');
+    const userDocRef = doc(usersRef, this.userId);
+    this.user$ = docData(userDocRef, { idField: 'id' });
+    this.user$.subscribe(user => {
+      console.log("User daten. ", user);
+      this.user = user;
+    });
+  }
 }
