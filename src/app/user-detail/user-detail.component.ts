@@ -3,6 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
 import { Firestore, collection, collectionData, getDoc, doc, docData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { User } from '../../models/user.class';
 
 @Component({
   selector: 'app-user-detail',
@@ -16,7 +17,7 @@ export class UserDetailComponent {
   firestore: Firestore = inject(Firestore);
   userId = '';
   user$!: Observable<any>;
-  user: any = {};
+  user: User = new User();
   
 
   constructor(private route: ActivatedRoute) { }
@@ -34,8 +35,8 @@ export class UserDetailComponent {
     const userDocRef = doc(usersRef, this.userId);
     this.user$ = docData(userDocRef, { idField: 'id' });
     this.user$.subscribe(user => {
-      console.log("User daten. ", user);
-      this.user = user;
+      this.user = new User(user);
+      console.log("User daten. ", this.user);
     });
   }
 }
