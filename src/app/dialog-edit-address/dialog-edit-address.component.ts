@@ -35,7 +35,6 @@ export class DialogEditAddressComponent {
     const usersRef = collection(this.firestore, 'users');
     const userDocRef = doc(usersRef, this.userId);
     updateDoc(userDocRef, this.user.toJSON()).then((result: any) => {
-      console.log('User successfully updated. ', result);
       this.loading = false;
       this.dialogRef.close();
     });
