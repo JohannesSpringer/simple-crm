@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
-import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -20,8 +20,7 @@ import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
     MatNativeDateModule,
     FormsModule,
     MatProgressBarModule,
-    CommonModule,
-    MatDialogModule
+    CommonModule
   ],
   providers: [
     { provide: DateAdapter, useClass: NativeDateAdapter },
