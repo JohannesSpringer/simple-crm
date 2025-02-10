@@ -23,4 +23,10 @@
 }
 .user-details h2 {
   margin-bottom: 0;
+}
+
+.pin-right-upper-corner {
+  position: absolute;
+  right: 0;
+  top: 0;
 }/*# sourceMappingURL=user-detail.component.css.map */
