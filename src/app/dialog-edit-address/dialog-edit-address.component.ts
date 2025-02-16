@@ -23,7 +23,7 @@ import { Firestore, collection, updateDoc, doc } from '@angular/fire/firestore';
   styleUrl: './dialog-edit-address.component.scss'
 })
 export class DialogEditAddressComponent {
-  user: User;
+  user: User = new User();
   userId: string = '';
   loading: boolean = false;
   firestore: Firestore = inject(Firestore);

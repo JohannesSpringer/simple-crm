@@ -27,11 +27,13 @@ export class UserComponent {
   allUsers = [];
 
   constructor(public dialog: MatDialog) {
-    const userCollection = collection(this.firestore, 'users');
-    this.users$ = collectionData(userCollection, { idField: 'userId' });
+    // const userCollection = collection(this.firestore, 'users');
+    // this.users$ = collectionData(userCollection, { idField: 'userId' });
   }
 
   ngOnInit(): void {
+    const userCollection = collection(this.firestore, 'users');
+    this.users$ = collectionData(userCollection, { idField: 'userId' });
     this.users$.subscribe(users => {
       console.log("Neue User Daten. ", users);
       this.allUsers = users;

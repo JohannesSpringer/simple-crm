@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
+import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 
 import { UserDetailComponent } from './user-detail.component';
 
@@ -8,7 +10,13 @@ describe('UserDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserDetailComponent]
+      imports: [
+        UserDetailComponent, 
+        RouterModule.forRoot([])
+      ], 
+      providers: [
+        {provide: Firestore, useValue: {}}
+      ]
     })
     .compileComponents();
     
